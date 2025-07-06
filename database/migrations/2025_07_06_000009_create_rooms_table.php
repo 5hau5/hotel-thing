@@ -10,13 +10,11 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('hotel_id');
-            $table->string('room_number');
-            $table->integer('capacity');
+            $table->foreignId('hotel_id')->constrained()->onDelete('cascade');
+            $table->string('type');
             $table->decimal('price', 8, 2);
+            $table->boolean('availability')->default(true);
             $table->timestamps();
-
-            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
         });
     }
 
