@@ -1,11 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 use App\Http\Controllers\RoomController;
 
-Route::resource('rooms', RoomController::class);
+# main page
+Route::get('/', function () {
+    return view('visitor.dashboard');
+})->name('visitor.home');
+
+
+
+Route::get('/hotel/book', function () {
+    return view('visitor.hotels.book');
+})->name('visitor.hotel.book');
