@@ -8,8 +8,21 @@ Route::get('/', function () {
     return view('visitor.dashboard');
 })->name('visitor.home');
 
-
-
-Route::get('/hotel/book', function () {
+// hotel bookign page
+Route::get('/hotels/book', function () {
     return view('visitor.hotels.book');
 })->name('visitor.hotel.book');
+
+// ferry booking page
+Route::get('/ferrys/book', function () {
+    return view('visitor.ferrys.book');
+})->name('visitor.ferry.book');
+
+Route::get('/parks/tickets', function () {
+    return view('visitor.parks.tickets');
+})->name('visitor.park.tickets');
+
+// mao
+Route::get('/map', function () {
+    return view('visitor.map');
+})->name('visitor.map');
