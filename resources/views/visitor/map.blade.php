@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>mapthing</title>
@@ -6,4 +6,12 @@
 <body>
     <h1>waaaow this is map</h1>
 </body>
-</html>
+</html> -->
+
+<x-app-layout>
+
+    <body>
+        <h1>waaaow this is map</h1>
+    </body>
+
+</x-app-layout>
