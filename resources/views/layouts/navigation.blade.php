@@ -52,6 +52,12 @@
                         </x-slot>
                     </x-dropdown>
                 @endauth
+                @guest
+                    <div class="text-center">
+                        <a href="{{ route('login') }}" class="text-blue-600 hover:underline mr-4">Login</a>
+                        <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Register</a>
+                    </div>
+                @endguest
             </div>
 
             <!-- Hamburger -->
