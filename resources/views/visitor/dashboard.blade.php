@@ -1,27 +1,40 @@
-{{-- @extends('layouts.app')
-
-@section('content')
-    <h1>Welcome to Picnic Island!</h1>
-    <ul>
-        <li><a href="{{ route('visitor.hotel.book') }}">Book Hotel</a></li>
-        <li><a href="{{ route('visitor.ferry.book') }}">Book Ferry</a></li>
-        <li><a href="{{ route('visitor.park.tickets') }}">Buy Theme Park Tickets</a></li>
-        <li><a href="{{ route('visitor.map') }}">View Island Map</a></li>
-    </ul>
-@endsection --}}
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            Welcome to Picnic Island
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+    <div class="py-8">
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            @guest
+                <div class="text-center">
+                    <a href="{{ route('login') }}" class="text-blue-600 hover:underline mr-4">Login</a>
+                    <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Register</a>
                 </div>
+            @else
+                <div class="text-gray-700 text-center">
+                    Welcome back, {{ Auth::user()->name }}!
+                </div>
+            @endguest
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a href="{{ route('visitor.hotels.index') }}" class="block p-6 bg-white shadow rounded hover:bg-gray-100">
+                    View Hotels
+                </a>
+
+                <a href="{{ route('visitor.ferrys.index') }}" class="block p-6 bg-white shadow rounded hover:bg-gray-100">
+                    View Ferry Options
+                </a>
+
+                <a href="{{ route('visitor.parks.index') }}" class="block p-6 bg-white shadow rounded hover:bg-gray-100">
+                    Explore Theme Park
+                </a>
+
+                <a href="{{ route('visitor.map') }}" class="block p-6 bg-white shadow rounded hover:bg-gray-100">
+                    View Island Map
+                </a>
             </div>
         </div>
     </div>
