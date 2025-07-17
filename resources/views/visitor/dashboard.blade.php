@@ -9,10 +9,6 @@
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             @guest
-                <div class="text-center">
-                    <a href="{{ route('login') }}" class="text-blue-600 hover:underline mr-4">Login</a>
-                    <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Register</a>
-                </div>
             @else
                 <div class="text-gray-700 text-center">
                     Welcome back, {{ Auth::user()->name }}!
@@ -23,10 +19,13 @@
                 <a href="{{ route('visitor.hotels.index') }}" class="block p-6 bg-white shadow rounded hover:bg-gray-100">
                     View Hotels
                 </a>
-
-                <a href="{{ route('visitor.ferrys.index') }}" class="block p-6 bg-white shadow rounded hover:bg-gray-100">
+                
+                @guest
+                @else
+                    <a href="{{ route('visitor.ferrys.index') }}" class="block p-6 bg-white shadow rounded hover:bg-gray-100">
                     View Ferry Options
-                </a>
+                    </a>
+                @endguest
 
                 <a href="{{ route('visitor.parks.index') }}" class="block p-6 bg-white shadow rounded hover:bg-gray-100">
                     Explore Theme Park
