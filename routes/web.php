@@ -4,8 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('visitor.dashboard');
+})->name('visitor.home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -58,8 +58,28 @@ Route::middleware(['auth'])->prefix('themepark')->name('themepark.')->group(func
 });
 
 
-// visitor Routes
-Route::middleware(['auth'])->prefix('visitor')->name('visitor.')->group(function () {
+// visitor routes
+// pblicly accessible visitor routes (no login required)
+Route::prefix('visitor')->name('visitor.')->group(function () {
+    Route::get('/hotels', function () {
+        return view('visitor.hotels.index');
+    })->name('hotels.index');
+
+    Route::get('/ferrys', function () {
+        return view('visitor.ferrys.index');
+    })->name('ferrys.index');
+
+    Route::get('/parks', function () {
+        return view('visitor.parks.index');
+    })->name('parks.index');
+
+    Route::get('/map', function () {
+        return view('visitor.map');
+    })->name('map');
+});
+
+// booking routes (require login)
+Route::middleware('auth')->prefix('visitor')->name('visitor.')->group(function () {
     Route::get('/hotels/book', function () {
         return view('visitor.hotels.book');
     })->name('hotels.book');
@@ -71,11 +91,8 @@ Route::middleware(['auth'])->prefix('visitor')->name('visitor.')->group(function
     Route::get('/parks/tickets', function () {
         return view('visitor.parks.tickets');
     })->name('parks.tickets');
-
-    Route::get('/map', function () {
-        return view('visitor.map');
-    })->name('map');
 });
+
 
 
 Route::get('/register', function () {
